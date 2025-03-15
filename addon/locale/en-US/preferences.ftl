@@ -1,4 +1,4 @@
-pref-title = Know Ur Zotero
+pref-title = Basic
 pref-showMonitorIcon =
     .label = Show Monitor Icon
 pref-openMonitorOnStart =

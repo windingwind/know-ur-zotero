@@ -1,4 +1,4 @@
-pref-title = Know Ur Zotero
+pref-title = 基本
 pref-showMonitorIcon =
     .label = 显示监视器图标
 pref-openMonitorOnStart =
