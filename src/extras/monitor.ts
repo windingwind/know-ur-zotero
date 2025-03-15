@@ -32,6 +32,8 @@ const openLogs: { [id: string]: boolean } = {};
 
 const handlers = { display };
 
+let accentColor = "blue";
+
 document.addEventListener(
   "DOMContentLoaded",
   () => {
@@ -104,6 +106,11 @@ function initChart() {
       },
     });
   }
+
+  accentColor =
+    getComputedStyle(document.documentElement)?.getPropertyValue(
+      "--color-accent",
+    ) || "blue";
 }
 
 function initShortcuts() {
@@ -153,7 +160,7 @@ function updateChartDatasets() {
       {
         label: "Total CPU Usage",
         data: chartHistory.total,
-        borderColor: "blue",
+        borderColor: accentColor,
         fill: false,
       },
     ];
