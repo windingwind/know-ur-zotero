@@ -21,19 +21,6 @@ function initStatusButton(win: Window) {
       tag: "div",
       namespace: "html",
       id: BUTTON_ID,
-      styles: {
-        width: "28px",
-        height: "28px",
-        display: "flex",
-        alignItems: "center",
-        paddingInline: "4px",
-        textAlign: "center",
-        boxSizing: "border-box",
-        marginInline: "4px",
-        fill: "var(--material-tabbar)",
-        // @ts-ignore
-        "-moz-context-properties": "fill,fill-opacity",
-      },
       listeners: [
         {
           type: "click",
@@ -48,6 +35,6 @@ function initStatusButton(win: Window) {
       ],
       skipIfExists: true,
     },
-    anchor.nextElementSibling,
+    anchor.nextElementSibling!,
   );
 }

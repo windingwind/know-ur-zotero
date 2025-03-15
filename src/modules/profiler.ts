@@ -1,4 +1,4 @@
-import { ParsedData, Filter, ParsedResult } from "../extras/analyzer";
+import { Filter, ParsedResult } from "../extras/analyzer";
 import { closeAnalyzer, getAnalyzer } from "../utils/analyzer";
 import { getMonitor } from "../utils/monitor";
 import { getPref } from "../utils/prefs";

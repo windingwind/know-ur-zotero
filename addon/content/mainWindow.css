@@ -1,0 +1,22 @@
+#zotero-__addonRef__-usage-status {
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-inline: 4px;
+  text-align: center;
+  box-sizing: border-box;
+  margin-inline: 4px;
+  fill: var(--material-tabbar);
+  -moz-context-properties: fill, fill-opacity;
+  -moz-window-dragging: no-drag;
+}
+
+#zotero-__addonRef__-usage-status:hover {
+  background: var(--fill-quinary);
+}
+
+#zotero-__addonRef__-usage-status:active {
+  background: var(--fill-quarternary);
+}

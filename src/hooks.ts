@@ -31,6 +31,19 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     `${addon.data.config.addonRef}-mainWindow.ftl`,
   );
 
+  ztoolkit.UI.appendElement(
+    {
+      tag: "link",
+      namespace: "html",
+      properties: {
+        rel: "stylesheet",
+        href: `chrome://${addon.data.config.addonRef}/content/mainWindow.css`,
+      },
+      skipIfExists: true,
+    },
+    win.document.documentElement,
+  );
+
   await startProfiler();
 
   initStatusButton(win);
