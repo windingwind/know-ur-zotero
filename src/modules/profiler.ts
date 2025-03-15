@@ -98,7 +98,7 @@ async function getAndProcessProfileData(
   const willUpdateMonitor = updateMonitor && canUpdateMonitor;
   const mainWin = Zotero.getMainWindow();
   const canUpdateStatus =
-    isWindowAlive(mainWin) && mainWin.document.querySelector(BUTTON_ID);
+    isWindowAlive(mainWin) && mainWin.document.querySelector(`#${BUTTON_ID}`);
   const willUpdateStatus = updateStatus && canUpdateStatus;
   const dataOnly = !openMonitor && !updateMonitor && !updateStatus;
 
@@ -155,7 +155,7 @@ async function getAndProcessProfileData(
             description: "Other Zotero activities.",
           },
         ],
-    includeDetailedResults: minimal,
+    includeDetailedResults: !minimal,
     disallowMultiple: true,
     duration,
   });
@@ -193,14 +193,37 @@ function queueUpdate() {
     return;
   }
   setTimeout(async () => {
-    await getAndProcessProfileData({
-      updateMonitor: true,
-      updateStatus: true,
-    });
+    try {
+      const result = await getAndProcessProfileData({
+        updateMonitor: true,
+        updateStatus: true,
+      });
+      if (result) {
+        saveReport(result);
+      }
+    } catch (e) {
+      Zotero.logError(e as Error);
+    }
+
     queueUpdate();
   }, period * 1000);
 }
 
 function getTime() {
   return Zotero.getMainWindow()?.performance?.now() || new Date().getTime();
+}
+
+async function saveReport(result: ParsedResult) {
+  if (!result) {
+    return;
+  }
+  const dir = addon.data.processor.recordDir;
+  if (!dir || !(await IOUtils.exists(dir))) {
+    return;
+  }
+
+  await IOUtils.writeJSON(
+    PathUtils.join(dir, `kuz_report_${new Date().getTime()}.json`),
+    result,
+  );
 }

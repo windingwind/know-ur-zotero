@@ -1,3 +1,4 @@
+import { FilePickerHelper } from "zotero-plugin-toolkit";
 import { getString } from "../utils/locale";
 
 export { initMenus };
@@ -14,6 +15,33 @@ function initMenus() {
       });
 
       (addon.data.processor.monitor?.target as Window).focus();
+    },
+  });
+
+  ztoolkit.Menu.register("menuTools", {
+    tag: "menuitem",
+    label: getString("menuTools-startRecord"),
+    icon: `chrome://${addon.data.config.addonRef}/content/icons/favicon.svg`,
+    isHidden: () => !!addon.data.processor.recordDir,
+    commandListener: async (ev) => {
+      const dir = await new FilePickerHelper(
+        "Save log file to...",
+        "folder",
+      ).open();
+      if (!dir) {
+        return;
+      }
+      addon.data.processor.recordDir = dir;
+    },
+  });
+
+  ztoolkit.Menu.register("menuTools", {
+    tag: "menuitem",
+    label: getString("menuTools-stopRecord"),
+    icon: `chrome://${addon.data.config.addonRef}/content/icons/favicon.svg`,
+    isHidden: () => !addon.data.processor.recordDir,
+    commandListener: async (ev) => {
+      addon.data.processor.recordDir = undefined;
     },
   });
 }

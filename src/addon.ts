@@ -19,6 +19,7 @@ class Addon {
     processor: {
       analyzer?: MessageHelper<typeof analyzerHandlers>;
       monitor?: MessageHelper<typeof monitorHandlers>;
+      recordDir?: string;
     };
   };
   // Lifecycle hooks
