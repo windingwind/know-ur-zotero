@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Activity Monitor</title>
+    <script src="chrome://__addonRef__/content/scripts/monitor.js"></script>
+    <link rel="stylesheet" href="chrome://zotero-platform/content/zotero.css" />
+    <link rel="stylesheet" href="monitor.css" />
+  </head>
+  <body>
+    <div id="main-content">
+      <div class="cpu-container">
+        <div class="cpu-indicator" id="cpu-indicator">0%</div>
+      </div>
+      <div id="chart-container">
+        <canvas id="usage-chart" width="400" height="100"></canvas>
+      </div>
+      <div id="detail-table-container">
+        <table id="detail-table">
+          <thead>
+            <tr>
+              <th>Thread</th>
+              <th>Source</th>
+              <th>CPU Time (us)</th>
+              <th>Percent (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows will be dynamically inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

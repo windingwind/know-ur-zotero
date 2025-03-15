@@ -1,24 +1,24 @@
 {
-  "name": "zotero-plugin-template",
+  "name": "know-ur-zotero",
   "type": "module",
-  "version": "3.0.4",
-  "description": "Zotero Plugin Template",
+  "version": "0.0.1",
+  "description": "Status monitoring and analysis tool for Zotero.",
   "config": {
-    "addonName": "Zotero Plugin Template",
-    "addonID": "addontemplate@euclpts.com",
-    "addonRef": "addontemplate",
-    "addonInstance": "AddonTemplate",
-    "prefsPrefix": "extensions.zotero.addontemplate"
+    "addonName": "Know Ur Zotero",
+    "addonID": "know-ur-zotero@euclpts.com",
+    "addonRef": "kuZ",
+    "addonInstance": "kuZ",
+    "prefsPrefix": "extensions.kuZ"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/windingwind/zotero-plugin-template.git"
+    "url": "git+https://github.com/windingwind/know-ur-zotero.git"
   },
   "author": "windingwind",
   "bugs": {
-    "url": "https://github.com/windingwind/zotero-plugin-template/issues"
+    "url": "https://github.com/windingwind/know-ur-zotero/issues"
   },
-  "homepage": "https://github.com/windingwind/zotero-plugin-template#readme",
+  "homepage": "https://github.com/windingwind/know-ur-zotero#readme",
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "start": "zotero-plugin serve",
@@ -30,6 +30,7 @@
     "update-deps": "npm update --save"
   },
   "dependencies": {
+    "chart.js": "^4.4.8",
     "zotero-plugin-toolkit": "^4.1.2"
   },
   "devDependencies": {

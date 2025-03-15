@@ -1,7 +1,10 @@
 import { config } from "../package.json";
-import { ColumnOptions, DialogHelper } from "zotero-plugin-toolkit";
+import { MessageHelper } from "zotero-plugin-toolkit";
 import hooks from "./hooks";
 import { createZToolkit } from "./utils/ztoolkit";
+import { handlers as analyzerHandlers } from "./extras/analyzer";
+import { handlers as monitorHandlers } from "./extras/monitor";
+import api from "./api";
 
 class Addon {
   public data: {
@@ -13,17 +16,15 @@ class Addon {
     locale?: {
       current: any;
     };
-    prefs?: {
-      window: Window;
-      columns: Array<ColumnOptions>;
-      rows: Array<{ [dataKey: string]: string }>;
+    processor: {
+      analyzer?: MessageHelper<typeof analyzerHandlers>;
+      monitor?: MessageHelper<typeof monitorHandlers>;
     };
-    dialog?: DialogHelper;
   };
   // Lifecycle hooks
   public hooks: typeof hooks;
   // APIs
-  public api: object;
+  public api: typeof api;
 
   constructor() {
     this.data = {
@@ -31,9 +32,10 @@ class Addon {
       config,
       env: __env__,
       ztoolkit: createZToolkit(),
+      processor: {},
     };
     this.hooks = hooks;
-    this.api = {};
+    this.api = api;
   }
 }
 

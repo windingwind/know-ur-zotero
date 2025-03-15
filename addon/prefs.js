@@ -1,3 +1,4 @@
 /* eslint-disable no-undef */
-pref("enable", true);
-pref("input", "This is input");
+pref("updatePeriod", 2);
+pref("openMonitorOnStart", false);
+pref("showMonitorIcon", true);

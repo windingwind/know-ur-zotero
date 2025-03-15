@@ -7,8 +7,9 @@
 declare namespace _ZoteroTypes {
   interface Prefs {
     PluginPrefsMap: {
-      "enable": boolean;
-      "input": string;
+      "updatePeriod": number;
+      "openMonitorOnStart": boolean;
+      "showMonitorIcon": boolean;
     };
   }
 }

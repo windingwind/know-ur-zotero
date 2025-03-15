@@ -1,5 +1,7 @@
-pref-title = 插件模板设置示例
-pref-enable =
-    .label = 开启
-pref-input = 输入
+pref-title = Know Ur Zotero
+pref-showMonitorIcon =
+    .label = 显示监视器图标
+pref-openMonitorOnStart =
+    .label = 启动时打开活动监视器
+pref-updatePeriod = 更新周期（秒）：
 pref-help = { $name } Build { $version } { $time }

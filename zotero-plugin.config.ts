@@ -36,6 +36,15 @@ export default defineConfig({
         target: "firefox115",
         outfile: `.scaffold/build/addon/content/scripts/${pkg.config.addonRef}.js`,
       },
+      {
+        entryPoints: ["src/extras/*.*"],
+        define: {
+          __env__: `"${process.env.NODE_ENV}"`,
+        },
+        outdir: ".scaffold/build/addon/content/scripts",
+        bundle: true,
+        target: ["firefox115"],
+      },
     ],
   },
 

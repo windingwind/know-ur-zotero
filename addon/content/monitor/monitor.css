@@ -1,0 +1,90 @@
+html,
+body {
+  min-height: 550px;
+  min-width: 550px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  -moz-window-dragging: drag;
+}
+#main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 8px;
+}
+h1,
+h2 {
+  text-align: center;
+}
+.cpu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cpu-indicator {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  color: white;
+  transition: background-color 0.5s ease;
+}
+.green {
+  background-color: var(--accent-green);
+}
+.orange {
+  background-color: var(--accent-orange);
+}
+.red {
+  background-color: var(--accent-red);
+}
+#detail-table-container {
+  flex: 1;
+  overflow-y: auto;
+  border: var(--material-border);
+  -moz-window-dragging: no-drag;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  border: var(--material-border);
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: var(--material-button);
+}
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.log-container {
+  background-color: var(--material-background);
+  padding: 10px;
+}
+.log-container pre {
+  background: var(--material-sidepane);
+  padding: 10px;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.log-container button {
+  margin-right: 10px;
+  margin-top: 5px;
+}
+tr.clickable {
+  cursor: pointer;
+}
