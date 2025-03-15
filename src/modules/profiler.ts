@@ -2,7 +2,7 @@ import { Filter, ParsedResult } from "../extras/analyzer";
 import { closeAnalyzer, getAnalyzer } from "../utils/analyzer";
 import { getMonitor } from "../utils/monitor";
 import { getPref } from "../utils/prefs";
-import { updateStatusButton } from "../utils/status";
+import { BUTTON_ID, updateStatusButton } from "../utils/status";
 import { isWindowAlive } from "../utils/window";
 
 export {
@@ -95,15 +95,23 @@ async function getAndProcessProfileData(
   const canUpdateMonitor = isWindowAlive(
     addon.data.processor.monitor?.target as Window,
   );
+  const willUpdateMonitor = updateMonitor && canUpdateMonitor;
+  const mainWin = Zotero.getMainWindow();
+  const canUpdateStatus =
+    isWindowAlive(mainWin) && mainWin.document.querySelector(BUTTON_ID);
+  const willUpdateStatus = updateStatus && canUpdateStatus;
+  const dataOnly = !openMonitor && !updateMonitor && !updateStatus;
 
-  // If the monitor is not open and cannot be updated, we should only display minimal results.
-  if (
-    !openMonitor &&
-    updateMonitor &&
-    !canUpdateMonitor &&
-    typeof minimal === "undefined"
-  ) {
-    minimal = true;
+  // If the monitor won't be updated and not purely data collection
+  if (!dataOnly && !openMonitor && !willUpdateMonitor) {
+    // If the status button also won't be updated, nothing to do, abort
+    if (!willUpdateStatus) {
+      return null;
+    }
+    // If only update status button, minimal data is enough
+    if (typeof minimal === "undefined") {
+      minimal = true;
+    }
   }
 
   const profileData = await getProfileData();
