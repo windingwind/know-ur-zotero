@@ -30,9 +30,36 @@ const chartHistory = {
 
 const openLogs: { [id: string]: boolean } = {};
 
-document.addEventListener("DOMContentLoaded", () => {
-  window.arguments[0].wrappedJSObject._initPromise.resolve();
+const handlers = { display };
 
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    init();
+  },
+  { once: true },
+);
+
+function init() {
+  initMessageServer();
+  initChart();
+  initShortcuts();
+
+  window.arguments[0].wrappedJSObject._initPromise.resolve();
+}
+
+function initMessageServer() {
+  const messageServer = new MessageHelper({
+    canBeDestroyed: true,
+    dev: __env__ === "development",
+    name: "monitorWorker",
+    target: self,
+    handlers,
+  });
+  messageServer.start();
+}
+
+function initChart() {
   Chart.register(
     CategoryScale,
     LinearScale,
@@ -77,18 +104,46 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
   }
-});
+}
 
-const handlers = { display };
+function initShortcuts() {
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      unSelectAll();
+      event.preventDefault();
+      return;
+    }
+    if (event.key === "a" && (event.ctrlKey || event.metaKey)) {
+      selectAll();
+      event.preventDefault();
+      return;
+    }
+    if (event.key === "w" && (event.ctrlKey || event.metaKey)) {
+      window.close();
+      return;
+    }
+  });
+}
 
-const messageServer = new MessageHelper({
-  canBeDestroyed: true,
-  dev: __env__ === "development",
-  name: "monitorWorker",
-  target: self,
-  handlers,
-});
-messageServer.start();
+function selectAll() {
+  cachedData.forEach((data) => {
+    data.statistics?.forEach((stat) => {
+      openLogs[getRowId(data.thread, stat)] = true;
+    });
+  });
+  updateChartDatasets();
+}
+
+function unSelectAll() {
+  const logRows = document.getElementsByClassName("log-row");
+  for (let i = 0; i < logRows.length; i++) {
+    logRows[i].remove();
+  }
+  for (const rowId in openLogs) {
+    openLogs[rowId] = false;
+  }
+  updateChartDatasets();
+}
 
 function updateChartDatasets() {
   const toggledRows = Object.keys(openLogs).filter((id) => openLogs[id]);
