@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import { config } from "../../package.json";
 
 function main() {

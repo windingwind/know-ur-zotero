@@ -1,6 +1,8 @@
-import { getString } from "../utils/locale";
+import { getString } from "../../utils/locale";
 
-export function registerPrefsPane() {
+export { registerPrefsPane };
+
+function registerPrefsPane() {
   Zotero.PreferencePanes.register({
     pluginID: addon.data.config.addonID,
     src: rootURI + "content/preferences.xhtml",

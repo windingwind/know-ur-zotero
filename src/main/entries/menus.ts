@@ -1,9 +1,9 @@
 import { FilePickerHelper } from "zotero-plugin-toolkit";
-import { getString } from "../utils/locale";
+import { getString } from "../../utils/locale";
 
-export { initMenus };
+export { registerMenus };
 
-function initMenus() {
+function registerMenus() {
   ztoolkit.Menu.register("menuTools", { tag: "menuseparator" });
   ztoolkit.Menu.register("menuTools", {
     tag: "menuitem",

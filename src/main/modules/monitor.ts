@@ -1,6 +1,6 @@
 import { MessageHelper } from "zotero-plugin-toolkit";
-import { handlers } from "../extras/monitor";
-import { isWindowAlive } from "./window";
+import { handlers } from "../../html/monitor";
+import { isWindowAlive } from "../../utils/window";
 
 export { closeMonitor, getMonitor };
 
@@ -22,7 +22,7 @@ async function getMonitor() {
     _initPromise: Zotero.Promise.defer(),
   };
   const worker = Services.ww.openWindow(
-    // @ts-ignore
+    // @ts-ignore - Missing type
     null,
     `chrome://${addon.data.config.addonRef}/content/monitor/monitor.html`,
     "kuz-monitor",

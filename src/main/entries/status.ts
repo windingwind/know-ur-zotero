@@ -1,9 +1,9 @@
-import { getPref } from "../utils/prefs";
-import { BUTTON_ID } from "../utils/status";
+import { getPref } from "../../utils/prefs";
+import { BUTTON_ID } from "../modules/status";
 
-export { initStatusButton };
+export { registerStatusButton };
 
-function initStatusButton(win: Window) {
+function registerStatusButton(win: Window) {
   if (getPref("showMonitorIcon") === false) {
     return;
   }

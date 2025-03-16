@@ -1,7 +1,5 @@
-/* eslint-disable no-restricted-globals */
-
 import { MessageHelper } from "zotero-plugin-toolkit";
-import { ParsedData, ParsedResult, Stats } from "./analyzer";
+import { ParsedData, ParsedResult, Stats } from "../workers/analyzer";
 import {
   Chart,
   CategoryScale,
@@ -47,6 +45,7 @@ function init() {
   initChart();
   initShortcuts();
 
+  // @ts-ignore - Gecko specific
   window.arguments[0].wrappedJSObject._initPromise.resolve();
 }
 

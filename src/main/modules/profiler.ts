@@ -1,16 +1,16 @@
-import { Filter, ParsedResult } from "../extras/analyzer";
-import { closeAnalyzer, getAnalyzer } from "../utils/analyzer";
-import { getMonitor } from "../utils/monitor";
-import { getPref } from "../utils/prefs";
-import { BUTTON_ID, updateStatusButton } from "../utils/status";
-import { isWindowAlive } from "../utils/window";
+import { Filter, ParsedResult } from "../../workers/analyzer";
+import { getAnalyzer, closeAnalyzer } from "./analyzer";
+import { getMonitor } from "./monitor";
+import { getPref } from "../../utils/prefs";
+import { BUTTON_ID, updateStatusButton } from "./status";
+import { isWindowAlive } from "../../utils/window";
 
 export {
   startProfiler,
-  stopProfiler,
   getProfileData,
   getAndProcessProfileData,
-  queueUpdate,
+  stopProfiler,
+  queueProfilerUpdate,
 };
 
 let _AddonManager: AddonManager | undefined = undefined;
@@ -184,7 +184,7 @@ async function stopProfiler() {
   profilerStarted = false;
 }
 
-function queueUpdate() {
+function queueProfilerUpdate() {
   if (!addon.data.alive || !isWindowAlive(Zotero.getMainWindow())) {
     return;
   }
@@ -205,7 +205,7 @@ function queueUpdate() {
       Zotero.logError(e as Error);
     }
 
-    queueUpdate();
+    queueProfilerUpdate();
   }, period * 1000);
 }
 

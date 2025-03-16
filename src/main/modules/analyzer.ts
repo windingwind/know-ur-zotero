@@ -1,5 +1,5 @@
 import { MessageHelper } from "zotero-plugin-toolkit";
-import { handlers } from "../extras/analyzer";
+import { handlers } from "../../workers/analyzer";
 
 export { closeAnalyzer, getAnalyzer };
 

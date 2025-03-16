@@ -1,5 +1,5 @@
-import { config } from "../../package.json";
-import { ParsedResult } from "../extras/analyzer";
+import { config } from "../../../package.json";
+import { ParsedResult } from "../../workers/analyzer";
 
 export { updateStatusButton, BUTTON_ID };
 

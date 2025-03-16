@@ -1,9 +1,9 @@
-import { config } from "../package.json";
+import { config } from "../../package.json";
 import { MessageHelper } from "zotero-plugin-toolkit";
 import hooks from "./hooks";
-import { createZToolkit } from "./utils/ztoolkit";
-import { handlers as analyzerHandlers } from "./extras/analyzer";
-import { handlers as monitorHandlers } from "./extras/monitor";
+import { createZToolkit } from "../utils/ztoolkit";
+import { handlers as analyzerHandlers } from "../workers/analyzer";
+import { handlers as monitorHandlers } from "../html/monitor";
 import api from "./api";
 
 class Addon {
