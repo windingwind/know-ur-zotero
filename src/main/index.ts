@@ -1,6 +1,6 @@
 import { BasicTool } from "zotero-plugin-toolkit";
-import Addon from "./main/addon";
-import { config } from "../package.json";
+import Addon from "./addon";
+import { config } from "../../package.json";
 
 const basicTool = new BasicTool();
 

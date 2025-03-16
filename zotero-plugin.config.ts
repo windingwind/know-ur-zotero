@@ -28,7 +28,7 @@ export default defineConfig({
     },
     esbuildOptions: [
       {
-        entryPoints: ["src/index.ts"],
+        entryPoints: ["src/main/index.ts"],
         define: {
           __env__: `"${process.env.NODE_ENV}"`,
         },
