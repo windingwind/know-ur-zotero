@@ -20,6 +20,15 @@ function registerMenus() {
 
   ztoolkit.Menu.register("menuTools", {
     tag: "menuitem",
+    label: getString("menuTools-memory"),
+    icon: `chrome://${addon.data.config.addonRef}/content/icons/favicon.svg`,
+    commandListener: (ev) => {
+      Zotero.openInViewer("about:memory");
+    },
+  });
+
+  ztoolkit.Menu.register("menuTools", {
+    tag: "menuitem",
     label: getString("menuTools-startRecord"),
     icon: `chrome://${addon.data.config.addonRef}/content/icons/favicon.svg`,
     isHidden: () => !!addon.data.processor.recordDir,
