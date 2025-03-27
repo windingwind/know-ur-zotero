@@ -1,6 +1,5 @@
 import { MessageHelper } from "zotero-plugin-toolkit";
-import { handlers } from "../../html/monitor";
-import { isWindowAlive } from "../../utils/window";
+import { isWindowAlive } from "../utils/window";
 
 export { closeMonitor, getMonitor };
 
@@ -30,7 +29,7 @@ async function getMonitor() {
     args,
   );
   await args._initPromise.promise;
-  const server = new MessageHelper<typeof handlers>({
+  const server = new MessageHelper<_PluginTypes.Monitor.Handlers>({
     canBeDestroyed: false,
     dev: __env__ === "development",
     name: "monitorWorkerMain",

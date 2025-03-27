@@ -1,7 +1,4 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "lib": ["ESNext", "WebWorker"]
-  },
+  "extends": "zotero-types/entries/mainWindow",
   "include": ["./**/*.ts", "../../typings/main.d.ts"]
 }

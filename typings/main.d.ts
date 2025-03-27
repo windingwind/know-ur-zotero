@@ -1,7 +1,5 @@
 /// <reference path="global.d.ts" />
 /// <reference path="prefs.d.ts" />
-/// <reference path="../node_modules/zotero-types/index.d.ts" />
-/// <reference path="../node_modules/zotero-types/internal.d.ts" />
 
 declare const _globalThis: {
   [key: string]: any;
@@ -11,7 +9,7 @@ declare const _globalThis: {
 };
 
 declare type ZToolkit = ReturnType<
-  typeof import("../src/utils/ztoolkit").createZToolkit
+  typeof import("../src/utils/privilliged/ztoolkit").createZToolkit
 >;
 
 declare const ztoolkit: ZToolkit;

@@ -1,4 +1,4 @@
 {
-  "extends": "zotero-types/entries/xhtml",
+  "extends": "zotero-types/entries/shared",
   "include": ["./**/*.ts", "../../typings/global.d.ts"]
 }

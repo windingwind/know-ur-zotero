@@ -1,7 +1,4 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "lib": ["ESNext", "DOM"]
-  },
-  "include": ["./**/*.ts", "../../typings/global.d.ts"]
+  "extends": "zotero-types/entries/html",
+  "include": ["./**/*.ts", "../../typings/global.d.ts", "../utils/**/*.ts"]
 }

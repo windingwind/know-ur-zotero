@@ -1,4 +1,4 @@
-import { getPref } from "../../utils/prefs";
+import { getPref } from "../utils/prefs";
 import { BUTTON_ID } from "../modules/status";
 
 export { registerStatusButton };
@@ -8,7 +8,7 @@ function registerStatusButton(win: Window) {
     return;
   }
 
-  const anchor = win.document.querySelector(
+  const anchor = win.document?.querySelector(
     "#zotero-tabs-toolbar > .zotero-tb-separator",
   );
 

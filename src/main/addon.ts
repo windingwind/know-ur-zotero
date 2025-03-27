@@ -1,9 +1,7 @@
 import { config } from "../../package.json";
 import { MessageHelper } from "zotero-plugin-toolkit";
 import hooks from "./hooks";
-import { createZToolkit } from "../utils/ztoolkit";
-import { handlers as analyzerHandlers } from "../workers/analyzer";
-import { handlers as monitorHandlers } from "../html/monitor";
+import { createZToolkit } from "./utils/ztoolkit";
 import api from "./api";
 
 class Addon {
@@ -17,8 +15,8 @@ class Addon {
       current: any;
     };
     processor: {
-      analyzer?: MessageHelper<typeof analyzerHandlers>;
-      monitor?: MessageHelper<typeof monitorHandlers>;
+      analyzer?: MessageHelper<_PluginTypes.Analyzer.Handlers>;
+      monitor?: MessageHelper<_PluginTypes.Monitor.Handlers>;
       recordDir?: string;
     };
   };

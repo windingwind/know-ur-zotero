@@ -1,9 +1,8 @@
-import { Filter, ParsedResult } from "../../workers/analyzer";
 import { getAnalyzer, closeAnalyzer } from "./analyzer";
 import { getMonitor } from "./monitor";
-import { getPref } from "../../utils/prefs";
+import { getPref } from "../utils/prefs";
 import { BUTTON_ID, updateStatusButton } from "./status";
-import { isWindowAlive } from "../../utils/window";
+import { isWindowAlive } from "../utils/window";
 
 export {
   startProfiler,
@@ -59,7 +58,7 @@ async function getProfileData() {
   return profileData;
 }
 
-async function getAddonInfo(): Promise<Filter[]> {
+async function getAddonInfo(): Promise<_PluginTypes.Analyzer.Filter[]> {
   if (!_AddonManager) {
     // @ts-ignore import is not typed
     _AddonManager = ChromeUtils.import(
@@ -173,7 +172,7 @@ async function getAndProcessProfileData(
   return result;
 }
 
-async function displayProfileData(result: ParsedResult) {
+async function displayProfileData(result: _PluginTypes.Analyzer.ParsedResult) {
   const server = await getMonitor();
   await server.proxy.display(result);
 }
@@ -213,7 +212,7 @@ function getTime() {
   return Zotero.getMainWindow()?.performance?.now() || new Date().getTime();
 }
 
-async function saveReport(result: ParsedResult) {
+async function saveReport(result: _PluginTypes.Analyzer.ParsedResult) {
   if (!result) {
     return;
   }

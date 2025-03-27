@@ -2,7 +2,7 @@
 
 import { MessageHelper } from "zotero-plugin-toolkit";
 
-export { handlers, ParsedData, Stats, Filter, ParsedResult };
+export { handlers };
 
 const handlers = {
   analyze,
@@ -21,7 +21,7 @@ messageServer.start();
 function analyze(
   profileData: any,
   options: {
-    keys: Filter[];
+    keys: _PluginTypes.Analyzer.Filter[];
     includeDetailedResults?: boolean;
     disallowMultiple?: boolean;
     duration?: number;
@@ -48,7 +48,10 @@ function analyze(
 
 function _parse(profileData: any) {
   // Helper function to retrieve a field index from a schema that can be either an array or an object.
-  function getFieldIndex(schema: Schema, fieldName: string) {
+  function getFieldIndex(
+    schema: _PluginTypes.Analyzer.Schema,
+    fieldName: string,
+  ) {
     if (Array.isArray(schema)) {
       return schema.indexOf(fieldName);
     } else if (schema && typeof schema === "object") {
@@ -60,8 +63,8 @@ function _parse(profileData: any) {
   // Helper function to recursively resolve a call stack from a given stack index.
   function getCallStack(
     stackIndex: number,
-    stackTable: DataTable,
-    frameTable: DataTable,
+    stackTable: _PluginTypes.Analyzer.DataTable,
+    frameTable: _PluginTypes.Analyzer.DataTable,
     stringTable: string[],
   ) {
     const frames = [];
@@ -87,7 +90,7 @@ function _parse(profileData: any) {
   }
 
   // We'll store the sorted results for each thread in an array.
-  const allThreadResults: ParsedData[] = [];
+  const allThreadResults: _PluginTypes.Analyzer.ParsedData[] = [];
 
   profileData.threads.forEach((thread: Record<string, any>) => {
     if (
@@ -151,8 +154,8 @@ function _parse(profileData: any) {
 }
 
 function _statistics(
-  data: ParsedData[],
-  filters: Filter[],
+  data: _PluginTypes.Analyzer.ParsedData[],
+  filters: _PluginTypes.Analyzer.Filter[],
   options: {
     includeDetailedResults?: boolean;
     includeOther?: boolean;
@@ -183,7 +186,7 @@ function _statistics(
         description: filter.description || "No description available.",
         totalCpuTime,
         percent,
-        results: [] as Result[],
+        results: [] as _PluginTypes.Analyzer.Result[],
       };
       if (options.includeDetailedResults) {
         statisticsData.results = keyResults;
@@ -220,7 +223,10 @@ function _statistics(
   return data;
 }
 
-function _averageUsage(data: ParsedData[], duration: number) {
+function _averageUsage(
+  data: _PluginTypes.Analyzer.ParsedData[],
+  duration: number,
+) {
   if (duration === 0) {
     return NaN;
   }
@@ -230,46 +236,4 @@ function _averageUsage(data: ParsedData[], duration: number) {
   });
 
   return totalCpuTime / duration / 10;
-}
-
-interface DataTable {
-  schema: Schema;
-  data: Array<Array<number | string | null>>;
-}
-
-interface Schema {
-  [key: string]: number;
-}
-
-interface Result {
-  callStack: string;
-  cpuTime: number;
-  percent: string;
-}
-
-interface Filter {
-  key: string;
-  name: string;
-  description?: string;
-}
-
-interface Stats {
-  key: string;
-  name: string;
-  description?: string;
-  totalCpuTime: number;
-  percent: string;
-  results?: Result[];
-}
-
-interface ParsedData {
-  thread: string;
-  totalCpuTime: number;
-  results: Result[];
-  statistics?: Stats[];
-}
-
-interface ParsedResult {
-  parsedData: ParsedData[];
-  averageUsage: number;
 }

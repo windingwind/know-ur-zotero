@@ -55,7 +55,7 @@ export default defineConfig({
         target: ["firefox115"],
       },
       {
-        entryPoints: ["src/workers/*.ts"],
+        entryPoints: ["src/webworker/*.ts"],
         define: {
           __env__: `"${process.env.NODE_ENV}"`,
         },

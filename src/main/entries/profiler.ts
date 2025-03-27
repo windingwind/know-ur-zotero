@@ -1,4 +1,4 @@
-import { getPref } from "../../utils/prefs";
+import { getPref } from "../utils/prefs";
 import {
   startProfiler,
   getAndProcessProfileData,

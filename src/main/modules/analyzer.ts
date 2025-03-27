@@ -1,5 +1,4 @@
 import { MessageHelper } from "zotero-plugin-toolkit";
-import { handlers } from "../../workers/analyzer";
 
 export { closeAnalyzer, getAnalyzer };
 
@@ -18,7 +17,7 @@ async function getAnalyzer() {
     `chrome://${addon.data.config.addonRef}/content/scripts/analyzer.js`,
     { name: "kuz-analyzer" },
   );
-  const server = new MessageHelper<typeof handlers>({
+  const server = new MessageHelper<_PluginTypes.Analyzer.Handlers>({
     canBeDestroyed: false,
     dev: __env__ === "development",
     name: "analyzerWorkerMain",

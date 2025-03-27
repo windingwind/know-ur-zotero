@@ -1,5 +1,5 @@
 import { FilePickerHelper } from "zotero-plugin-toolkit";
-import { getString } from "../../utils/locale";
+import { getString } from "../utils/locale";
 
 export { registerMenus };
 
@@ -9,7 +9,7 @@ function registerMenus() {
     tag: "menuitem",
     label: getString("menuTools-monitor"),
     icon: `chrome://${addon.data.config.addonRef}/content/icons/favicon.svg`,
-    commandListener: async (ev) => {
+    commandListener: async () => {
       await addon.api.profiler.getAndProcessProfileData({
         openMonitor: true,
       });
@@ -22,7 +22,7 @@ function registerMenus() {
     tag: "menuitem",
     label: getString("menuTools-memory"),
     icon: `chrome://${addon.data.config.addonRef}/content/icons/favicon.svg`,
-    commandListener: (ev) => {
+    commandListener: () => {
       Zotero.openInViewer("about:memory");
     },
   });
@@ -32,7 +32,7 @@ function registerMenus() {
     label: getString("menuTools-startRecord"),
     icon: `chrome://${addon.data.config.addonRef}/content/icons/favicon.svg`,
     isHidden: () => !!addon.data.processor.recordDir,
-    commandListener: async (ev) => {
+    commandListener: async () => {
       const dir = await new FilePickerHelper(
         "Save log file to...",
         "folder",
@@ -49,7 +49,7 @@ function registerMenus() {
     label: getString("menuTools-stopRecord"),
     icon: `chrome://${addon.data.config.addonRef}/content/icons/favicon.svg`,
     isHidden: () => !addon.data.processor.recordDir,
-    commandListener: async (ev) => {
+    commandListener: async () => {
       addon.data.processor.recordDir = undefined;
     },
   });

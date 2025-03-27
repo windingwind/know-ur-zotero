@@ -1,5 +1,4 @@
 import { MessageHelper } from "zotero-plugin-toolkit";
-import { ParsedData, ParsedResult, Stats } from "../workers/analyzer";
 import {
   Chart,
   CategoryScale,
@@ -17,7 +16,7 @@ export { handlers };
 
 const MAX_HISTORY_LENGTH = 20;
 const MAX_LOG_LENGTH = 10;
-let cachedData: ParsedData[];
+let cachedData: _PluginTypes.Analyzer.ParsedData[];
 let usageChart: Chart;
 
 const chartHistory = {
@@ -184,14 +183,14 @@ function updateChartDatasets() {
   usageChart.update();
 }
 
-function getRowId(thread: string, stat: Stats): string {
+function getRowId(thread: string, stat: _PluginTypes.Analyzer.Stats): string {
   return `${thread}-${stat.key}`;
 }
 
 function createLogRow(
   row: HTMLTableRowElement,
   thread: string,
-  stat: Stats,
+  stat: _PluginTypes.Analyzer.Stats,
 ): HTMLTableRowElement {
   const logRow = document.createElement("tr");
   logRow.classList.add("log-row");
@@ -235,7 +234,10 @@ function createLogRow(
   return logRow;
 }
 
-function createDataRow(thread: string, stat: Stats): HTMLTableRowElement {
+function createDataRow(
+  thread: string,
+  stat: _PluginTypes.Analyzer.Stats,
+): HTMLTableRowElement {
   const row = document.createElement("tr");
   row.classList.add("clickable");
   row.title = stat.description || "";
@@ -279,7 +281,7 @@ function renderTableRows(): void {
     .getElementsByTagName("tbody")[0];
   tbody.innerHTML = "";
 
-  const rows: { thread: string; stat: Stats }[] = [];
+  const rows: { thread: string; stat: _PluginTypes.Analyzer.Stats }[] = [];
   cachedData.forEach((data) => {
     data.statistics?.forEach((stat) => {
       rows.push({ thread: data.thread, stat });
@@ -299,7 +301,7 @@ function renderTableRows(): void {
   });
 }
 
-function display(result: ParsedResult): void {
+function display(result: _PluginTypes.Analyzer.ParsedResult): void {
   const { parsedData, averageUsage } = result;
 
   const indicator = document.getElementById("cpu-indicator")!;

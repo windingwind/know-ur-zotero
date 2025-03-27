@@ -3,7 +3,7 @@ import { registerMenus } from "./entries/menus";
 import { registerPrefsPane } from "./entries/preferences";
 import { registerProfiler, unregisterProfiler } from "./entries/profiler";
 import { registerStatusButton } from "./entries/status";
-import { initLocale } from "../utils/locale";
+import { initLocale } from "./utils/locale";
 
 async function onStartup() {
   await Promise.all([

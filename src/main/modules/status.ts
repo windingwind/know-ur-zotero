@@ -1,11 +1,10 @@
 import { config } from "../../../package.json";
-import { ParsedResult } from "../../workers/analyzer";
 
 export { updateStatusButton, BUTTON_ID };
 
 const BUTTON_ID = `zotero-${config.addonRef}-usage-status`;
 
-function updateStatusButton(result: ParsedResult) {
+function updateStatusButton(result: _PluginTypes.Analyzer.ParsedResult) {
   let { averageUsage: usage } = result;
   if (usage > 100) {
     usage = 100;
@@ -25,6 +24,7 @@ function updateStatusButton(result: ParsedResult) {
   } else {
     color = "red";
   }
+  // @ts-ignore - Missing type
   button.style.color = `var(--accent-${color})`;
 
   button.title = `Average CPU usage: ${usage.toFixed(2)}%`;

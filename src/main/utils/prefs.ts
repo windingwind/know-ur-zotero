@@ -1,4 +1,4 @@
-import { config } from "../../package.json";
+import { config } from "../../../package.json";
 
 type PluginPrefsMap = _ZoteroTypes.Prefs["PluginPrefsMap"];
 
