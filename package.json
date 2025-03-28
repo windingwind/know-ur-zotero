@@ -31,17 +31,17 @@
   },
   "dependencies": {
     "chart.js": "^4.4.8",
-    "zotero-plugin-toolkit": "^4.1.2"
+    "zotero-plugin-toolkit": "^5.0.0-0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
-    "@types/node": "^22.13.10",
-    "eslint": "^9.22.0",
+    "@types/node": "^22.13.14",
+    "eslint": "^9.23.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.1",
+    "typescript-eslint": "^8.28.0",
     "zotero-plugin-scaffold": "^0.4.1",
-    "zotero-types": "^4.0.0-beta.0"
+    "zotero-types": "^4.0.0-beta.2"
   },
   "prettier": {
     "printWidth": 80,
