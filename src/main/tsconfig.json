@@ -1,4 +1,4 @@
 {
-  "extends": "zotero-types/entries/mainWindow",
+  "extends": "zotero-types/entries/sandbox",
   "include": ["./**/*.ts", "../../typings/main.d.ts"]
 }
