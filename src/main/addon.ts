@@ -19,6 +19,7 @@ class Addon {
       monitor?: MessageHelper<_PluginTypes.Monitor.Handlers>;
       recordDir?: string;
     };
+    cpuCount?: number;
   };
   // Lifecycle hooks
   public hooks: typeof hooks;
@@ -32,6 +33,7 @@ class Addon {
       env: __env__,
       ztoolkit: createZToolkit(),
       processor: {},
+      cpuCount: undefined,
     };
     this.hooks = hooks;
     this.api = api;

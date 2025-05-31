@@ -21,7 +21,7 @@
             <tr>
               <th>Thread</th>
               <th>Source</th>
-              <th>CPU Time (us)</th>
+              <th>CPU Time (<span id="detail-table-header-cputime"></span>)</th>
               <th>Percent (%)</th>
             </tr>
           </thead>
@@ -29,6 +29,11 @@
             <!-- Rows will be dynamically inserted here -->
           </tbody>
         </table>
+        <script>
+          // Use us for Windows, otherwise use ms
+          document.getElementById("detail-table-header-cputime").textContent =
+            navigator.platform.startsWith("Win") ? "us" : "ms";
+        </script>
       </div>
     </div>
   </body>

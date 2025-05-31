@@ -3,6 +3,7 @@ import { registerMenus } from "./entries/menus";
 import { registerPrefsPane } from "./entries/preferences";
 import { registerProfiler, unregisterProfiler } from "./entries/profiler";
 import { registerStatusButton } from "./entries/status";
+import { updateCPUCount } from "./modules/system";
 import { initLocale } from "./utils/locale";
 
 async function onStartup() {
@@ -15,6 +16,8 @@ async function onStartup() {
   initLocale();
 
   registerPrefsPane();
+
+  updateCPUCount();
 
   await Promise.all(
     Zotero.getMainWindows().map((win) => onMainWindowLoad(win)),

@@ -25,6 +25,7 @@ function analyze(
     includeDetailedResults?: boolean;
     disallowMultiple?: boolean;
     duration?: number;
+    numCpus?: number;
   } = {
     keys: [],
     includeDetailedResults: false,
@@ -32,7 +33,11 @@ function analyze(
   },
 ) {
   const parsedData = _parse(profileData);
-  const averageUsage = _averageUsage(parsedData, options.duration || 0);
+  const averageUsage = _averageUsage(
+    parsedData,
+    options.duration || 0,
+    options.numCpus,
+  );
   if (options.keys.length === 0) {
     return { parsedData, averageUsage };
   }
@@ -226,6 +231,7 @@ function _statistics(
 function _averageUsage(
   data: _PluginTypes.Analyzer.ParsedData[],
   duration: number,
+  numCpus: number = 8, // Default to 8 CPUs if not specified
 ) {
   if (duration === 0) {
     return NaN;
@@ -235,5 +241,5 @@ function _averageUsage(
     totalCpuTime += threadData.totalCpuTime;
   });
 
-  return totalCpuTime / duration / 10;
+  return totalCpuTime / duration / numCpus;
 }

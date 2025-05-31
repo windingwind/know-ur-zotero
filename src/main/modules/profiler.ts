@@ -157,6 +157,7 @@ async function getAndProcessProfileData(
     includeDetailedResults: !minimal,
     disallowMultiple: true,
     duration,
+    numCpus: addon.data.cpuCount,
   });
 
   await startProfiler();
@@ -209,7 +210,12 @@ function queueProfilerUpdate() {
 }
 
 function getTime() {
-  return Zotero.getMainWindow()?.performance?.now() || new Date().getTime();
+  let time = Zotero.getMainWindow()?.performance?.now() || new Date().getTime();
+  // On Windows, the profile time is in us, so we convert it
+  if (Zotero.isWin) {
+    time = time * 1000;
+  }
+  return time;
 }
 
 async function saveReport(result: _PluginTypes.Analyzer.ParsedResult) {
