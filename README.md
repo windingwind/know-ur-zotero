@@ -38,7 +38,6 @@ This plugin can monitor the status of the Zotero desktop app with:
 ## 👋 Install
 
 - Download the plugin (.xpi file) from below.
-
   - [Latest Stable](https://github.com/windingwind/know-ur-zotero/releases/latest)
   - [All Releases](https://github.com/windingwind/know-ur-zotero/releases)
 
